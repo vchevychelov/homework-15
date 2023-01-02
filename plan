@@ -1,0 +1,17 @@
+1. create jenkins file:
+    add terraform:
+        1. create VM1
+        2. create VM2
+    add ansible:
+        1. add inventory hosts
+            host1:
+                1. apt update
+                2. apt install git -y
+                3. apt install docker -y
+                4. git clone repo from github
+                5. docker build dockerfile
+                6. push docker image in to dockerhub
+            host2:
+                1. apt update
+                2. apt install docker -y
+                3. run docker from dockerhub -p8080
