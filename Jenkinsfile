@@ -6,14 +6,9 @@ pipeline {
                 git branch: 'main', credentialsId: 'Github', url: 'https://github.com/vchevychelov/terraform.git'
             }
         }
-        stage('terraform Init') {
+        stage('terraform destroy') {
             steps{
-                sh 'terraform init'
-            }
-        }
-        stage('terraform apply') {
-            steps{
-                sh 'terraform apply --auto-approve'
+                sh 'terraform destroy --auto-approve'
             }
         }
     }
