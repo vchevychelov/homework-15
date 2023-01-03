@@ -4,6 +4,11 @@ pipeline {
        terraform 'terraform'
     }
     stages {
+        stage('whoami') {
+            steps{
+                sh 'whoami'
+            }
+        }
         stage('Git checkout') {
            steps{
                 git branch: 'main', credentialsId: 'Github', url: 'https://github.com/vchevychelov/terraform.git'
