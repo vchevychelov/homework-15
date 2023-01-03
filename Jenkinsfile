@@ -9,6 +9,11 @@ pipeline {
                 git branch: 'main', credentialsId: 'Github', url: 'https://github.com/vchevychelov/terraform.git'
             }
         }
+        stage('terraform providers lock') {
+            steps{
+                sh 'terraform providers lock -net-mirror=https://terraform-mirror.yandexcloud.net -platform=linux_amd64 -platform=darwin_arm64 yandex-cloud/yandex'
+            }
+        }
         stage('terraform format check') {
             steps{
                 sh 'terraform fmt'
