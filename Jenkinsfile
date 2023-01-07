@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Git checkout') {
            steps{
-                git branch: 'main', credentialsId: 'Github', url: 'https://github.com/vchevychelov/boxfuse.git'
+                git branch: 'main', credentialsId: 'Github', url: 'https://github.com/vchevychelov/deploy.git'
             }
         }
         stage('terraform Init') {
