@@ -16,11 +16,15 @@ pipeline {
                 sh 'terraform apply --auto-approve'
             }
         }
-        stage('terraform destroy') {
-            steps{
-                sh 'terraform destroy --auto-approve'
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: "https://raw.githubusercontent.com/vchevychelov/boxfuse/master/deploy/playbook.yml"
             }
         }
-
+        stage('Deploy') {
+            steps {
+                ansiblePlaybook playbook: 'playbook.yml', inventory: './inventory/hosts.ini', credentialsId: 'github_key'
+            }
+        }
     }
 }
