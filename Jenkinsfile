@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Checkout') {
             steps {
-                git branch: 'main', url: "https://raw.githubusercontent.com/vchevychelov/boxfuse/master/deploy/playbook.yml"
+                sh 'wget https://raw.githubusercontent.com/vchevychelov/boxfuse/master/deploy/playbook.yml'
             }
         }
         stage('Deploy') {
