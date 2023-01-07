@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Git checkout') {
            steps{
-                git branch: 'main', credentialsId: 'Github', url: 'https://github.com/vchevychelov/terraform.git'
+                git branch: 'main', credentialsId: 'Github', url: 'https://github.com/vchevychelov/boxfuse.git'
             }
         }
         stage('terraform Init') {
@@ -16,14 +16,9 @@ pipeline {
                 sh 'terraform apply --auto-approve'
             }
         }
-        stage('Checkout') {
-            steps {
-                sh 'wget https://raw.githubusercontent.com/vchevychelov/boxfuse/master/deploy/playbook.yml'
-            }
-        }
         stage('Deploy') {
             steps {
-                ansiblePlaybook playbook: 'playbook.yml', inventory: './inventory/hosts.ini', credentialsId: 'github_key'
+                ansiblePlaybook playbook: 'playbook.yml', inventory: './inventory/hosts.ini'
             }
         }
     }
